@@ -17,6 +17,7 @@ class Calculator {
 
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) return;
+    if (number === "+/-") return this.currentOperand = '-' + String(this.currentOperand);
     this.currentOperand = String(this.currentOperand) + String(number);
   }
 
@@ -87,6 +88,7 @@ class Calculator {
 
 const numberButtons = document.querySelectorAll("[number]");
 const operationButtons = document.querySelectorAll("[operation]");
+const signButton = document.querySelector('[sign]')
 const equalsButton = document.querySelector("[equals]");
 const deleteButton = document.querySelector("[delete]");
 const allClearButton = document.querySelector("[all-clear]");
@@ -103,6 +105,11 @@ numberButtons.forEach((button) => {
     calculator.updateDisplay();
   });
 });
+
+signButton.addEventListener('click', ()=> {
+    calculator.appendNumber(signButton.innerText);
+    calculator.updateDisplay();
+})
 
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
