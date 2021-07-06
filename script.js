@@ -17,8 +17,17 @@ class Calculator {
 
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) return;
-    if (number === "+/-") return this.currentOperand = '-' + String(this.currentOperand);
+    // if (number === "+/-" && negative === false) return this.currentOperand = '-' + String(this.currentOperand);
+    // if (number === "+/-" && negative === true) return this.currentOperand = String(this.currentOperand);
+    // if (number === "+/-") return this.currentOperand = '-' + String(this.currentOperand);
+    
+    if (number === "+/-" && this.currentOperand.includes('-')) {
+        this.currentOperand = this.currentOperand.slice(1, -1)
+    } else if (number === "+/-" && !this.currentOperand.includes('-')) {
+        this.currentOperand = '-' + String(this.currentOperand);
+    }
     this.currentOperand = String(this.currentOperand) + String(number);
+    // if (number === "+/-" && !this.currentOperand.includes('-')) return this.currentOperand = '-' + String(this.currentOperand)
   }
 
   chooseOperation(operation) {
